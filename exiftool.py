@@ -267,6 +267,18 @@ class ExifTool(object):
         """
         return self.execute_json(filename)[0]
 
+    def get_metadata_recursive(self, path):
+        """Return the meta-data for all files at a given path.
+
+        If `path` is a file, this is equivalent to :py:meth:`get_metadata_batch([path])`
+        Otherwise, recursivelly walk over the `path` directory and returns metadata for
+        all found files.
+
+        The returned dictionary has the format described in the
+        documentation of :py:meth:`execute_json()`.
+        """
+        return self.execute_json(path)
+
     def get_tags_batch(self, tags, filenames):
         """Return only specified tags for the given files.
 
